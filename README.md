@@ -2,6 +2,16 @@
 
 自动从 GitHub 获取 IPTV 直播源，实时测速清洗，并通过 HTTP 提供有效频道列表。
 
+## Docker 镜像
+
+```bash
+# 拉取镜像
+docker pull ghcr.io/yao1987825/iptv-speedtest:latest
+
+# 或使用 docker-compose
+docker compose up -d
+```
+
 ## 功能特性
 
 - ✅ **自动获取直播源**：每小时从 GitHub 拉取最新的 M3U 文件
