@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# 安装必要的工具
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+# 创建 scripts 目录
+RUN mkdir -p /app/scripts
+
+# 环境变量
+ENV M3U_FILE=/data/iptv.m3u
+ENV DB_PATH=/data/iptv_speedtest.db
+ENV TV_M3U_PATH=/data/tv.m3u
+ENV TEST_INTERVAL=3600
+ENV TEST_TIMEOUT=5
+
+# 运行脚本（从挂载的 scripts 目录）
+CMD ["python3", "/app/scripts/speedtest_cleaner.py"]
