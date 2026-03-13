@@ -154,7 +154,8 @@ docker run -d \
 - **测速频率**：每3分钟一次（180秒）
 - **超时设置**：单个频道5秒超时
 - **输出文件**：
-  - `./data/tv.m3u` - 有效频道列表
+  - `./data/tv.m3u` - 有效频道列表（标准格式）
+  - `./data/tvbox.m3u` - 有效频道列表（TVBox 格式，带分组信息）
   - `./data/iptv_speedtest.db` - 测速数据库
 
 ### iptv_nginx - HTTP 文件服务

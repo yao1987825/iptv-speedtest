@@ -42,6 +42,7 @@ services:
       - TZ=Asia/Shanghai
       - TEST_INTERVAL=${TEST_INTERVAL:-180}
       - TEST_TIMEOUT=${TEST_TIMEOUT:-5}
+      - TVBOX_M3U_PATH=${TVBOX_M3U_PATH:-/data/tvbox.m3u}
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
     logging:
