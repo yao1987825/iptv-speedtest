@@ -61,6 +61,58 @@ curl http://localhost:5353/tv.m3u
 docker compose -f docker-compose.speedtest.yml down
 ```
 
+## 不同设备配置
+
+### 设备配置对照表
+
+| 设备类型 | 示例设备 | 数据目录 |
+|---------|---------|---------|
+| ImmortalWrt (ARM) | 你的服务器 | `/mnt/mmcblk2p4/docker/iptv-speedtest/data` |
+| OpenWrt (ARM) | 路由器 | `/mnt/storage/iptv-speedtest/data` |
+| x86 服务器 | VPS/PC | `/docker/iptv-speedtest/data` |
+| 群晖 NAS | DS220+ | `/volume1/docker/iptv-speedtest/data` |
+| 威联通 NAS | TS-453D | `/share/Container/iptv-speedtest/data` |
+
+### 配置步骤
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/yao1987825/iptv-speedtest.git
+cd iptv-speedtest
+
+# 2. 复制配置示例
+cp .env.example .env
+
+# 3. 编辑配置，修改 DATA_DIR 为你的数据目录
+nano .env
+```
+
+### .env 配置示例
+
+```bash
+# ImmortalWrt (ARM 设备)
+DATA_DIR=/mnt/mmcblk2p4/docker/iptv-speedtest/data
+
+# x86 服务器
+DATA_DIR=/docker/iptv-speedtest/data
+
+# 群晖 NAS
+DATA_DIR=/volume1/docker/iptv-speedtest/data
+```
+
+### 手动启动（不使用 docker-compose）
+
+```bash
+# ARM 设备示例
+docker run -d \
+  --name iptv_speedtest \
+  --network host \
+  -v /mnt/mmcblk2p4/docker/iptv-speedtest/data:/data \
+  -v /mnt/mmcblk2p4/docker/iptv-speedtest/scripts:/app/scripts \
+  --restart unless-stopped \
+  ghcr.io/yao1987825/iptv-speedtest:latest
+```
+
 ## 服务架构
 
 ```
